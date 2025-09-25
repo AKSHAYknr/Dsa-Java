@@ -1,0 +1,10 @@
+# Ignore compiled class files
+*.class
+
+# Ignore build output
+/target/
+/build/
+/out/
+
+# Ignore logs
+*.log
