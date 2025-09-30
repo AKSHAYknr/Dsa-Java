@@ -9,15 +9,43 @@ public class Traversal {
         BinaryTree binaryTree = new BinaryTree();
         Node root = binaryTree.buildTree(nodes);
         //System.out.println(root.data);
-        preOrder(root);
-        inOrder(root);
-        postOrder(root);
-        levelOrder(root);
+        //preOrder(root);
+        //inOrder(root);
+        //postOrder(root);
+        //levelOrder(root);
+        System.out.println(countNodes(root));
+        System.out.println(sumOfNodes(root));
+        System.out.println(heightOfTree(root));
+    }
+
+    public static int heightOfTree(Node root){
+        if(root == null) return 0;
+
+        int leftHeight = heightOfTree(root.left);
+        int rightHeight = heightOfTree(root.right);
+
+        int height = Math.max(leftHeight, rightHeight) + 1;
+
+        return height;
+    }
+
+    public static int sumOfNodes(Node root){
+        if(root == null) return 0;
+        int leftSum = sumOfNodes(root.left);
+        int rightSum = sumOfNodes(root.right);
+        return leftSum + rightSum + root.data;
+    }
+
+    public static int countNodes(Node root){
+        if(root == null) return 0;
+        int leftNodes = countNodes(root.left);
+        int rightNodes = countNodes(root.right);
+        return leftNodes + rightNodes + 1;
     }
 
     public static void preOrder(Node root){
         if(root == null) return;
-        //System.out.print(root.data + "->");
+        System.out.print(root.data + "->");
         preOrder(root.left);
         preOrder(root.right);
     }
@@ -25,7 +53,7 @@ public class Traversal {
     public static void inOrder(Node root){
         if(root == null) return;
         inOrder(root.left);
-        //System.out.print(root.data + "->");
+        System.out.print(root.data + "->");
         inOrder(root.right);
     }
 
@@ -33,9 +61,10 @@ public class Traversal {
         if(root == null) return;
         postOrder(root.left);
         postOrder(root.right);
-        //System.out.print(root.data + "->");
+        System.out.print(root.data + "->");
     }
 
+    // BFS in tree - print nodes on each level from left to right
     public static void levelOrder(Node root){
         if(root == null) return;
         Queue<Node> queue = new LinkedList<>();
